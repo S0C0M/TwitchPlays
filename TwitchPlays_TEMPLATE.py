@@ -4,12 +4,13 @@ import keyboard
 import pydirectinput
 import pyautogui
 import TwitchPlays_Connection
+import pygetwindow as gw
 from TwitchPlays_KeyCodes import *
 
 ##################### GAME VARIABLES #####################
 
 # Replace this with your Twitch username. Must be all lowercase.
-TWITCH_CHANNEL = 'dougdougw' 
+TWITCH_CHANNEL = 'alexlau2008' 
 
 # If streaming on Youtube, set this to False
 STREAMING_ON_TWITCH = True
@@ -44,7 +45,10 @@ active_tasks = []
 pyautogui.FAILSAFE = False
 
 ##########################################################
-
+# Replace with the exact title of your game window
+window = gw.getWindowsWithTitle("DeSmuME 0.9.13 x64 SSE2 | Pokémon Platinum")[0]
+window.activate()
+time.sleep(0.1)  # short delay to ensure focus
 # Count down before starting, so you have time to load up the game
 countdown = 5
 while countdown > 0:
@@ -77,47 +81,44 @@ def handle_message(message):
         ###################################
         # Example GTA V Code 
         ###################################
+        
 
-        # If the chat message is "left", then hold down the A key for 2 seconds
+        if msg == "up": 
+            HoldAndReleaseKey(UP_ARROW, 0.2)       
+        
         if msg == "left": 
-            HoldAndReleaseKey(A, 2)
+            HoldAndReleaseKey(LEFT_ARROW, 0.2)
+              
+        if msg == "down": 
+            HoldAndReleaseKey(DOWN_ARROW, 0.2)     
+        
+        if msg == "right": 
+            HoldAndReleaseKey(RIGHT_ARROW, 0.2)
+
+        if msg == "b": 
+            HoldAndReleaseKey(B, 0.1)
 
         # If the chat message is "right", then hold down the D key for 2 seconds
-        if msg == "right": 
-            HoldAndReleaseKey(D, 2)
+        if msg == "a": 
+            HoldAndReleaseKey(A, 0.1)
 
-        # If message is "drive", then permanently hold down the W key
-        if msg == "drive": 
-            ReleaseKey(S) #release brake key first
-            HoldKey(W) #start permanently driving
+        if msg == "y": 
+            HoldAndReleaseKey(Y, 0.1)
 
-        # If message is "reverse", then permanently hold down the S key
-        if msg == "reverse": 
-            ReleaseKey(W) #release drive key first
-            HoldKey(S) #start permanently reversing
+        if msg == "x": 
+            HoldAndReleaseKey(X, 0.1)   
 
-        # Release both the "drive" and "reverse" keys
-        if msg == "stop": 
-            ReleaseKey(W)
-            ReleaseKey(S)
+        if msg == "start": 
+            HoldAndReleaseKey(ENTER, 0.1)
 
-        # Press the spacebar for 0.7 seconds
-        if msg == "brake": 
-            HoldAndReleaseKey(SPACE, 0.7)
+        if msg == "select": 
+            HoldAndReleaseKey(RIGHT_SHIFT, 0.1)
 
-        # Press the left mouse button down for 1 second, then release it
-        if msg == "shoot": 
-            pydirectinput.mouseDown(button="left")
-            time.sleep(1)
-            pydirectinput.mouseUp(button="left")
+        if msg == "l": 
+            HoldAndReleaseKey(L, 0.1)
 
-        # Move the mouse up by 30 pixels
-        if msg == "aim up":
-            pydirectinput.moveRel(0, -30, relative=True)
-
-        # Move the mouse right by 200 pixels
-        if msg == "aim right":
-            pydirectinput.moveRel(200, 0, relative=True)
+        if msg == "r": 
+            HoldAndReleaseKey(R, 0.1)
 
         ####################################
         ####################################
